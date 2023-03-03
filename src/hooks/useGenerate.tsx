@@ -1,10 +1,16 @@
 import {useMutation} from "@tanstack/react-query";
-import {Translation} from "@/pages/api/generate";
+import Translation from "@/src/models/translation";
+import {Concept} from "@/src/models/constants";
 
+type useGenerateInput = {
+  concept: Concept,
+  word: string
+}
 
 function useGenerate() {
-  return useMutation(async (word: string) => {
-    const response = await fetch("/api/generate", {
+  return useMutation(async ({concept, word}: useGenerateInput) => {
+    console.log(word);
+    const response = await fetch(`/api/sentences/Russian/${concept}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

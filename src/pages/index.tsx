@@ -1,4 +1,4 @@
-import Practice from "@/components/Practice";
+import Practice from "@/src/components/Practice";
 
 export default function Home() {
   return (

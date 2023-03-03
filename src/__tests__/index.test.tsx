@@ -1,4 +1,4 @@
-import Home from "@/pages";
+import Home from "@/src/pages";
 import {render} from "@testing-library/react";
 
 describe('Index', () => {

@@ -1,12 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 import {Configuration, OpenAIApi} from "openai";
-import ApiError from "@/models/apiError";
-
-export type Translation = {
-  english: string,
-  russian: string
-}
+import ApiError from "@/src/models/apiError";
+import Translation from "@/src/models/translation";
+import {Concept, Language} from "@/src/models/constants";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -26,13 +23,14 @@ export default async function handler(
     return;
   }
 
+  const {language, concept} = req.query as {language: Language, concept: Concept};
   const {word} = req.body as {word: string};
-
+  console.log(`language: ${language} concept: ${concept} word: ${word}`);
 
   try {
     const completion = await openai.createCompletion({
       model: 'text-davinci-003',
-      prompt: generatePrompt(word),
+      prompt: generatePrompt(language, concept, word),
       temperature: 0.6,
       max_tokens: 200
     });
@@ -55,8 +53,19 @@ export default async function handler(
   }
 }
 
-function generatePrompt(word: string) {
-  return `The accusative case in Russian denotes either a direct object of a verb, or direction into or onto something.
-
-Given an example of a sentence in english and russian that uses the accusative case and the word ${word}.  Your response should be in JSON format with two parameters 'english' and 'russian'.`
+function generatePrompt(language: Language, concept: Concept, word: string) {
+  if (language === 'Russian') {
+    const wordInstruction = word !== '' ? `падеж со словом ${word}` : '';
+    return `Напишите пример предложения, в котором используется ${caseTranslation[concept]} ${wordInstruction}.  Ваш ответ должен быть в формате JSON с двумя параметрами 'english' и 'russian'.`
+  }
 }
+
+const caseTranslation = {
+  "Accusative": "винительный",
+  "Dative": "дательный",
+  "Prepositional": "предложный",
+  "Instrumental": "инструментальный",
+  "Genitive": "родительный"
+} as {
+  [k in Concept]: string
+};
