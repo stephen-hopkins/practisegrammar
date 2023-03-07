@@ -28,15 +28,23 @@ export default async function handler(
   console.log(`language: ${language} concept: ${concept} word: ${word}`);
 
   try {
-    const completion = await openai.createCompletion({
-      model: 'text-davinci-003',
-      prompt: generatePrompt(language, concept, word),
-      temperature: 0.6,
-      max_tokens: 200
-    });
+
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {role: "user", content: generatePrompt(language, concept, word)}
+      ]
+    })
+
     console.log(completion.data);
-    const translation = JSON.parse(completion.data.choices[0].text as string) as Translation;
-    res.status(200).json(translation)
+    const response = completion.data?.choices[0]?.message?.content;
+
+    if (response) {
+      res.status(200).json(JSON.parse(response));
+    } else {
+      res.status(502);
+    }
+
   } catch(error: any) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
@@ -58,6 +66,7 @@ function generatePrompt(language: Language, concept: Concept, word: string) {
     const wordInstruction = word !== '' ? `падеж со словом ${word}` : '';
     return `Напишите пример предложения, в котором используется ${caseTranslation[concept]} ${wordInstruction}.  Ваш ответ должен быть в формате JSON с двумя параметрами 'english' и 'russian'.`
   }
+  return "";
 }
 
 const caseTranslation = {

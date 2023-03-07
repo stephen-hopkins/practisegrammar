@@ -9,7 +9,6 @@ type useGenerateInput = {
 
 function useGenerate() {
   return useMutation(async ({concept, word}: useGenerateInput) => {
-    console.log(word);
     const response = await fetch(`/api/sentences/Russian/${concept}`, {
       method: "POST",
       headers: {
