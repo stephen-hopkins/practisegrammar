@@ -5,6 +5,7 @@ import {Button} from "primereact/button";
 import useGenerate from "@/src/hooks/useGenerate";
 import {Concept, Concepts} from "@/src/models/constants";
 import {Dropdown} from "primereact/dropdown";
+import {ProgressSpinner} from "primereact/progressspinner";
 
 function Practice() {
 
@@ -23,13 +24,12 @@ function Practice() {
 
   return (
     <div className="flex flex-column align-items-center">
-      <div>
-        <Dropdown value={concept} onChange={e => setConcept(e.target.value)} options={[...Concepts]} />
-        <InputText value={word} onChange={e => setWord(e.target.value)} />
-        <Button className="ml-4" onClick={onSubmit}>Generate</Button>
-      </div>
+      <Dropdown value={concept} onChange={e => setConcept(e.target.value)} options={[...Concepts]}/>
+      <InputText className="mt-4" value={word} onChange={e => setWord(e.target.value)}/>
+      <Button className="mt-4" onClick={onSubmit}>Generate</Button>
+      {generate.isLoading && <ProgressSpinner className="mt-4" />}
       <div className="mt-6 text-4xl">{english}</div>
-      <Button className="mt-4" onClick={() => setShowTrans(true)}>Reveal</Button>
+      <Button className={classNames("mt-4", {hidden: !generate.isSuccess})} onClick={() => setShowTrans(true)}>Reveal</Button>
       <div className={classNames("mt-4 text-4xl", {hidden: !showTrans})}>{russian}</div>
     </div>
   );
