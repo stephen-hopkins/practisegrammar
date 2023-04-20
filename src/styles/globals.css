@@ -1,11 +1,35 @@
+html,
 body {
-    background: #0060df;
-    color: white;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background: #d89708;
+  color: white;
 }
 
 .p-progress-spinner {
-    width: 50px;
-    height: 50px;
-
+  width: 50px;
+  height: 50px;
 }
 
+.img-logo {
+  object-fit: contain;
+}
+
+.nav-background {
+  position: relative;
+  border-radius: 0 0 0 25px;
+}
+
+.nav-background::before {
+  content: "";
+  position: absolute;
+  background-color: transparent;
+  left: -50px;
+  height: 100px;
+  width: 50px;
+  border-top-right-radius: 50px;
+  box-shadow: 0 -50px 0 0 white;
+}

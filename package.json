@@ -17,6 +17,7 @@
     "@types/react-dom": "18.0.10",
     "eslint": "8.33.0",
     "eslint-config-next": "13.1.6",
+    "firebase": "^9.17.2",
     "next": "13.1.6",
     "openai": "^3.2.1",
     "primeflex": "^3.3.0",

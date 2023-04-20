@@ -1,0 +1,27 @@
+.bubble {
+  background-size: cover;
+  aspect-ratio: 1096 / 499;
+  margin-top: 1rem;
+}
+
+.right {
+  background-image: url("../../public/speechbubble-right.png");
+}
+
+.left {
+  background-image: url("../../public/speechbubble-left.png");
+}
+
+.text_wrapper {
+  margin-top: 3%;
+  height: 61%;
+  display: flex;
+  align-items: center;
+}
+
+.text {
+  font-size: 2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  color: black;
+}
