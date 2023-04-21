@@ -40,11 +40,11 @@ function Practice() {
         Generate
       </Button>
       {generate.isLoading && <ProgressSpinner className="mt-4" />}
-      <SpeechBubble text={english} type="original" show={english} />
+      <SpeechBubble text={english ? english : ""} type="original" show={!!english} />
       <Button className={classNames("mt-4", { hidden: !generate.isSuccess })} onClick={() => setShowTrans(true)}>
         Reveal
       </Button>
-      <SpeechBubble text={russian} type="translated" show={showTrans} />
+      <SpeechBubble text={russian ? russian : ""} type="translated" show={showTrans} />
     </div>
   );
 }
