@@ -25,8 +25,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
   console.log(`language: ${language} concept: ${concept} word: ${word}`);
 
   try {
-    const prompt = generatePrompt(language, concept, word);
-    console.log(prompt);
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: generatePrompt(language, concept, word) }],
@@ -41,7 +39,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
       res.status(502);
     }
   } catch (error: any) {
-    // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);

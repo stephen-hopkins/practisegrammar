@@ -5,11 +5,11 @@
 }
 
 .right {
-  background-image: url("../../public/speechbubble-right.png");
+  background-image: url("../../../public/speechbubble-right.png");
 }
 
 .left {
-  background-image: url("../../public/speechbubble-left.png");
+  background-image: url("../../../public/speechbubble-left.png");
 }
 
 .text_wrapper {
@@ -20,7 +20,6 @@
 }
 
 .text {
-  font-size: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
   color: black;

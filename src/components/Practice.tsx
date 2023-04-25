@@ -7,10 +7,10 @@ import { Concept, Concepts } from "@/src/models/constants";
 import { Dropdown } from "primereact/dropdown";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { capitalise } from "@/src/lib/capitalise";
-import SpeechBubble from "./SpeechBubble";
+import SpeechBubble from "./SpeechBubble/SpeechBubble";
 
 function Practice() {
-  const [concept, setConcept] = useState("Accusative" as Concept);
+  const [concept, setConcept] = useState("accusative" as Concept);
   const [word, setWord] = useState("");
   const [showTrans, setShowTrans] = useState(false);
   const generate = useGenerate();
@@ -23,28 +23,45 @@ function Practice() {
   const english = generate.isSuccess && generate.data.english;
   const russian = generate.isSuccess && generate.data.russian;
 
-  const conceptOptions = useMemo(() => {
-    return Concepts.map((c) => {
-      return {
-        label: capitalise(c),
-        value: c,
-      };
-    });
-  }, []);
+  const toggleShowTrans = () => {
+    setShowTrans(!showTrans);
+  };
 
   return (
-    <div className="flex flex-column align-items-center">
-      <Dropdown value={concept} onChange={(e) => setConcept(e.target.value)} options={conceptOptions} />
-      <InputText className="mt-4" value={word} onChange={(e) => setWord(e.target.value)} />
-      <Button className="mt-4" onClick={onSubmit}>
-        Generate
-      </Button>
+    <div className="grid">
+      <p className="col-12 m-0">Which case would you like to practice?</p>
+      <div className="col-12 flex justify-content-end">
+        <Dropdown
+          className="w-auto"
+          value={concept}
+          onChange={(e) => setConcept(e.target.value)}
+          options={[...Concepts]}
+        />
+      </div>
+      <p className="col-12 ml-auto m-0">Which word?</p>
+      <div className="col-12 flex justify-content-end">
+        <InputText className="" value={word} onChange={(e) => setWord(e.target.value)} />
+      </div>
+      <div className="col-12 flex justify-content-center">
+        <Button className="mt-2" onClick={onSubmit}>
+          Generate
+        </Button>
+      </div>
       {generate.isLoading && <ProgressSpinner className="mt-4" />}
-      <SpeechBubble text={english ? english : ""} type="original" show={!!english} />
-      <Button className={classNames("mt-4", { hidden: !generate.isSuccess })} onClick={() => setShowTrans(true)}>
-        Reveal
-      </Button>
-      <SpeechBubble text={russian ? russian : ""} type="translated" show={showTrans} />
+      <SpeechBubble
+        className="col-12"
+        text={english ? english : ""}
+        type="original"
+        show={!!english}
+        onClick={toggleShowTrans}
+      />
+      <SpeechBubble
+        className="col-12"
+        text={russian ? russian : ""}
+        type="translated"
+        show={showTrans}
+        onClick={toggleShowTrans}
+      />
     </div>
   );
 }
