@@ -1,23 +1,23 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
-import { classNames } from "primereact/utils";
 import { Button } from "primereact/button";
-import useGenerate from "@/src/hooks/useGenerate";
 import { Concept, Concepts } from "@/src/models/constants";
 import { Dropdown } from "primereact/dropdown";
 import { ProgressSpinner } from "primereact/progressspinner";
-import { capitalise } from "@/src/lib/capitalise";
-import SpeechBubble from "./SpeechBubble/SpeechBubble";
+import SpeechBubble from "../SpeechBubble/SpeechBubble";
+import useGenerate from "@/src/hooks/useGenerate";
 
 function Practice() {
-  const [concept, setConcept] = useState("accusative" as Concept);
+  const [concept, setConcept] = useState(undefined as Concept | undefined);
   const [word, setWord] = useState("");
   const [showTrans, setShowTrans] = useState(false);
   const generate = useGenerate();
 
   const onSubmit = () => {
-    setShowTrans(false);
-    generate.mutate({ concept, word });
+    if (word && concept) {
+      setShowTrans(false);
+      generate.mutate({ concept, word });
+    }
   };
 
   const english = generate.isSuccess && generate.data.english;
@@ -32,15 +32,17 @@ function Practice() {
       <p className="col-12 m-0">Which case would you like to practice?</p>
       <div className="col-12 flex justify-content-end">
         <Dropdown
+          placeholder="Select a case"
           className="w-auto"
           value={concept}
           onChange={(e) => setConcept(e.target.value)}
           options={[...Concepts]}
+          data-testid="concept-dropdown"
         />
       </div>
-      <p className="col-12 ml-auto m-0">Which word?</p>
+      <p className="col-12 ml-auto m-0">Which word should be included?</p>
       <div className="col-12 flex justify-content-end">
-        <InputText className="" value={word} onChange={(e) => setWord(e.target.value)} />
+        <InputText className="" value={word} onChange={(e) => setWord(e.target.value)} placeholder="word to practice" />
       </div>
       <div className="col-12 flex justify-content-center">
         <Button className="mt-2" onClick={onSubmit}>

@@ -10,14 +10,13 @@ type Props = {
 };
 
 export default function SpeechBubble({ text, type, show, className, onClick }: Props) {
+  if (!show) {
+    return null;
+  }
+
   return (
     <div
-      className={classNames(
-        { hidden: !show },
-        type == "original" ? styles.right : styles.left,
-        styles.bubble,
-        className
-      )}
+      className={classNames(type == "original" ? styles.right : styles.left, styles.bubble, className)}
       onClick={onClick}
     >
       <div className={styles.text_wrapper}>

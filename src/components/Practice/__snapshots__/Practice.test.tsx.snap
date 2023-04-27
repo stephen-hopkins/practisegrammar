@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Practice matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="grid"
+  >
+    <p
+      class="col-12 m-0"
+    >
+      Which case would you like to practice?
+    </p>
+    <div
+      class="col-12 flex justify-content-end"
+    >
+      <div
+        class="p-dropdown p-component p-inputwrapper w-auto"
+        data-testid="concept-dropdown"
+      >
+        <div
+          class="p-hidden-accessible"
+        >
+          <input
+            aria-haspopup="listbox"
+            readonly=""
+            type="text"
+          />
+        </div>
+        <div
+          class="p-hidden-accessible p-dropdown-hidden-select"
+        >
+          <select
+            aria-hidden="true"
+            tabindex="-1"
+          >
+            <option
+              selected=""
+              value=""
+            >
+              Select a case
+            </option>
+          </select>
+        </div>
+        <span
+          class="p-dropdown-label p-inputtext p-placeholder"
+        >
+          Select a case
+        </span>
+        <div
+          aria-expanded="false"
+          aria-haspopup="listbox"
+          aria-label="Select a case"
+          class="p-dropdown-trigger"
+          role="button"
+        >
+          <span
+            class="p-dropdown-trigger-icon p-clickable pi pi-chevron-down"
+          />
+        </div>
+      </div>
+    </div>
+    <p
+      class="col-12 ml-auto m-0"
+    >
+      Which word should be included?
+    </p>
+    <div
+      class="col-12 flex justify-content-end"
+    >
+      <input
+        class="p-inputtext p-component"
+        placeholder="word to practice"
+        value=""
+      />
+    </div>
+    <div
+      class="col-12 flex justify-content-center"
+    >
+      <button
+        class="p-button p-component mt-2"
+      >
+        Generate
+      </button>
+    </div>
+    <div
+      class="right bubble col-12"
+    >
+      <div
+        class="text_wrapper"
+      >
+        <span
+          class="text"
+        >
+          Example english sentence
+        </span>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
