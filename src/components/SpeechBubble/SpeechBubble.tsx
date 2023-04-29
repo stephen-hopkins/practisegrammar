@@ -5,22 +5,18 @@ type Props = {
   text: string;
   type: "original" | "translated";
   show: boolean;
-  className: string;
   onClick: () => void;
 };
 
-export default function SpeechBubble({ text, type, show, className, onClick }: Props) {
+export default function SpeechBubble({ text, type, show, onClick }: Props) {
   if (!show) {
     return null;
   }
 
   return (
-    <div
-      className={classNames(type == "original" ? styles.right : styles.left, styles.bubble, className)}
-      onClick={onClick}
-    >
+    <div className={classNames(type == "original" ? styles.right : styles.left, styles.bubble)} onClick={onClick}>
       <div className={styles.text_wrapper}>
-        <span className={styles.text}>{text}</span>
+        <div className={styles.text}>{text}</div>
       </div>
     </div>
   );

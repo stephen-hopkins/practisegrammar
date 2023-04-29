@@ -15,10 +15,12 @@ const queryClient = new QueryClient();
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <AppHeader className={inter.className} />
-      <main className={inter.className}>
-        <Component {...pageProps} />
-      </main>
+      <div className={inter.className}>
+        <AppHeader />
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }

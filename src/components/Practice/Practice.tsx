@@ -29,8 +29,10 @@ function Practice() {
 
   return (
     <div className="grid">
-      <p className="col-12 m-0">Which case would you like to practice?</p>
-      <div className="col-12 flex justify-content-end">
+      <div className="col-12 flex justify-content-center">
+        <p className="m-0">Which case would you like to practice?</p>
+      </div>
+      <div className="col-12 flex justify-content-center">
         <Dropdown
           placeholder="Select a case"
           className="w-auto"
@@ -40,8 +42,10 @@ function Practice() {
           data-testid="concept-dropdown"
         />
       </div>
-      <p className="col-12 ml-auto m-0">Which word should be included?</p>
-      <div className="col-12 flex justify-content-end">
+      <div className="col-12 flex justify-content-center">
+        <p className="m-0">Which word should be included?</p>
+      </div>
+      <div className="col-12 flex justify-content-center">
         <InputText className="" value={word} onChange={(e) => setWord(e.target.value)} placeholder="word to practice" />
       </div>
       <div className="col-12 flex justify-content-center">
@@ -50,20 +54,12 @@ function Practice() {
         </Button>
       </div>
       {generate.isLoading && <ProgressSpinner className="mt-4" />}
-      <SpeechBubble
-        className="col-12"
-        text={english ? english : ""}
-        type="original"
-        show={!!english}
-        onClick={toggleShowTrans}
-      />
-      <SpeechBubble
-        className="col-12"
-        text={russian ? russian : ""}
-        type="translated"
-        show={showTrans}
-        onClick={toggleShowTrans}
-      />
+      <div className="col-12 flex justify-content-center">
+        <SpeechBubble text={english ? english : ""} type="original" show={!!english} onClick={toggleShowTrans} />
+      </div>
+      <div className="col-12 flex justify-content-center">
+        <SpeechBubble text={russian ? russian : ""} type="translated" show={showTrans} onClick={toggleShowTrans} />
+      </div>
     </div>
   );
 }
