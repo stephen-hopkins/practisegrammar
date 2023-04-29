@@ -3,16 +3,16 @@
 exports[`SpeechBubble matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="right bubble test"
+    class="right bubble"
   >
     <div
       class="text_wrapper"
     >
-      <span
+      <div
         class="text"
       >
         Example test
-      </span>
+      </div>
     </div>
   </div>
 </DocumentFragment>

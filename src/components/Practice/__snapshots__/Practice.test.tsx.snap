@@ -5,13 +5,17 @@ exports[`Practice matches snapshot 1`] = `
   <div
     class="grid"
   >
-    <p
-      class="col-12 m-0"
-    >
-      Which case would you like to practice?
-    </p>
     <div
-      class="col-12 flex justify-content-end"
+      class="col-12 flex justify-content-center"
+    >
+      <p
+        class="m-0"
+      >
+        Which case would you like to practice?
+      </p>
+    </div>
+    <div
+      class="col-12 flex justify-content-center"
     >
       <div
         class="p-dropdown p-component p-inputwrapper w-auto"
@@ -59,13 +63,17 @@ exports[`Practice matches snapshot 1`] = `
         </div>
       </div>
     </div>
-    <p
-      class="col-12 ml-auto m-0"
-    >
-      Which word should be included?
-    </p>
     <div
-      class="col-12 flex justify-content-end"
+      class="col-12 flex justify-content-center"
+    >
+      <p
+        class="m-0"
+      >
+        Which word should be included?
+      </p>
+    </div>
+    <div
+      class="col-12 flex justify-content-center"
     >
       <input
         class="p-inputtext p-component"
@@ -83,18 +91,25 @@ exports[`Practice matches snapshot 1`] = `
       </button>
     </div>
     <div
-      class="right bubble col-12"
+      class="col-12 flex justify-content-center"
     >
       <div
-        class="text_wrapper"
+        class="right bubble"
       >
-        <span
-          class="text"
+        <div
+          class="text_wrapper"
         >
-          Example english sentence
-        </span>
+          <div
+            class="text"
+          >
+            Example english sentence
+          </div>
+        </div>
       </div>
     </div>
+    <div
+      class="col-12 flex justify-content-center"
+    />
   </div>
 </DocumentFragment>
 `;

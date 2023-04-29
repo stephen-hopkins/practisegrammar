@@ -5,23 +5,18 @@ import mockRouter from "next-router-mock";
 
 describe("AppHeader", () => {
   it("renders", () => {
-    render(<AppHeader className="test" />);
+    render(<AppHeader />);
   });
 
   it("matches snapshot", () => {
-    const { asFragment } = render(<AppHeader className="test" />);
+    const { asFragment } = render(<AppHeader />);
     expect(asFragment()).toMatchSnapshot();
-  });
-
-  it("renders with className", () => {
-    const { container } = render(<AppHeader className="test" />);
-    expect(container.firstChild).toHaveClass("test");
   });
 
   it("clicking on logo takes you home", async () => {
     const user = userEvent.setup();
     mockRouter.push("/about");
-    const { getByAltText } = render(<AppHeader className="test" />);
+    const { getByAltText } = render(<AppHeader />);
 
     const logo = getByAltText("application logo");
     await user.click(logo);

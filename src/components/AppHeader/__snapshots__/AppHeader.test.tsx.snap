@@ -3,7 +3,7 @@
 exports[`AppHeader matches snapshot 1`] = `
 <DocumentFragment>
   <header
-    class="header_wrapper test"
+    class="header_wrapper"
   >
     <img
       alt="application logo"
