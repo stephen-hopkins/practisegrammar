@@ -1,12 +1,17 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RenderOptions, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
+import { MemoryRouterProvider } from "next-router-mock/MemoryRouterProvider";
 
-jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/navigation", () => require("next-router-mock"));
 
 const queryClient = new QueryClient();
 const AllProviders = ({ children }: { children: React.ReactNode }) => {
-  return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <MemoryRouterProvider url="/">{children}</MemoryRouterProvider>
+    </QueryClientProvider>
+  );
 };
 
 const customRender = (ui: React.ReactElement, options?: Omit<RenderOptions, "wrapper">) =>

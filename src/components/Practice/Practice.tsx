@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
@@ -8,6 +10,7 @@ import SpeechBubble from "../SpeechBubble/SpeechBubble";
 import useGenerate from "@/src/hooks/useGenerate";
 
 function Practice() {
+  console.log(" in practice");
   const [concept, setConcept] = useState(undefined as Concept | undefined);
   const [word, setWord] = useState("");
   const [showTrans, setShowTrans] = useState(false);

@@ -13,7 +13,9 @@ describe("AppHeader", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  it("clicking on logo takes you home", async () => {
+  // skipped for now because next-router-mock doesn't support next/navigation properly yet
+  // https://github.com/scottrippey/next-router-mock/issues/67
+  it.skip("clicking on logo takes you home", async () => {
     const user = userEvent.setup();
     mockRouter.push("/about");
     const { getByAltText } = render(<AppHeader />);
@@ -21,6 +23,6 @@ describe("AppHeader", () => {
     const logo = getByAltText("application logo");
     await user.click(logo);
 
-    expect(mockRouter.pathname).toBe("/");
+    expect(mockRouter.asPath).toBe("/");
   });
 });
